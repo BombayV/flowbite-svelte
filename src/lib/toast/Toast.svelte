@@ -17,6 +17,7 @@
     contentClass?: string;
   }
 
+  export let message: string | HTMLElement | undefined = undefined;
   export let dismissable: boolean = true;
   export let color: 'primary' | 'gray' | 'red' | 'yellow' | 'green' | 'blue' | 'indigo' | 'purple' | 'orange' | 'none' = 'primary';
   export let position: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'none' = 'none';
@@ -73,7 +74,11 @@
     {/if}
 
     <div class={contentClass}>
-      <slot />
+      {#if message}
+        {@html message}
+      {:else}
+        <slot />
+      {/if}
     </div>
 
     {#if dismissable}
